@@ -204,8 +204,7 @@ for (int row = 0; row < jagged.Length; row++)
 {
     for (int element = 0； element < jagged[row].Length;element++)
     {
-        Console.WriteLine("row: {0}, element: {1}, value: {2)", row, element,
-jagged[row][element]);
+        Console.WriteLine("row: {0}, element: {1}, value: {2)", row, element,jagged[row][element]);
     }
 }
 ```
@@ -221,7 +220,7 @@ Array 类实现的其他属性有 LongLength 和 Rank。如果数组包含的元
 
 Array 类是一个抽象类，所以不能使用构造函数来创建数组。但除了可以使用 C #语法创建数组实例之外，还可以使用静态方法 CreatelnstanceO 创建数组。如果事先不知道元素的类型，该静态方法就非常有用，因为类型可以作为 Type 对象传递给 Createlnstancef)方法。下面的例子说明了如何创建类型为 int、大小为 5 的数组。CreatelnstanceO 方法的第 1 个参数应是元素的类型，第 2 个参数定义数组的大小。可以用 SetValueO 方法设置对应元素的值，用 GetValueQ 方法读取对应元素的值(代码文件 SimpleArrays4Jrogram.cs):
 
-```
+```csharp
 Array intArrayl = Array.Createlnstance (typeof (int) r 5〉；
 for (int i = 0; i < 5; i++)
 {
@@ -306,49 +305,54 @@ Person[] beatlesClone = (Person[])beatles.Clone {);
 
 ## 排序
 
-Amy 类使用 Quicksort 算法对数组中的元素进行排序。SortO 方法需要数组中的元素实现
-IComparable 接口。因为简单类型(如 System.String 和 System.lnt32)实现 IComparable 接口，所以可以
-对包含这些类型的元素排序。
+Array 类使用 Quicksort 算法对数组中的元素进行排序。Sort() 方法需要数组中的元素实现 IComparable 接口。因为简单类型(如 System.String 和 System.lnt32)实现 IComparable 接口，所以可以对包含这些类型的元素排序。
 在示例程序中，数组 name 包含 string 类型的元素’这个数组可以排序(代码文件 SortingSaiqMe/
 Program.cs)。
+
+```csharp
 string[} names = {
-"Christina Aguilera",
-"Shakira1',
-"Beyonce”，
-"Lady Gaga\*1
-1；
-Ar ray-Sort(names);
-foreach (vdr name in names)
-1
-Console.WriteLine(name);
+    "Christina Aguilera",
+    "Shakira1',
+    "Beyonce”，
+    "Lady Gaga"
+    };
+Array.Sort(names);
+foreach (var name in names)
+{
+    Console.WriteLine(name);
 }
+```
+
 该应用程序的输出是排好序的数组：
 Beyonce
 Christina Aguilera
 Lady Gaga
 Shakira
-如果对数组使用自定义类，就必须实现 ICon^k 接口，这个接口只定义了一个方法
-CompareToO.如果要比较的对象相等，该方法就返回 0。如果该实例应排在参数对象的前面，该方
-法就返回小于 0 的值。如果该实例应排在参数对象的后面，该方法就返回大于 0 的值，
-修改 Person 类，使之实现 IComparable< Person>接口。先使用 String 类中 CompareToO 方法对
-LastName 的值进行比较。如果 LastName 的值相同，就比较 FirstName(代码文件 SortingSample/
-Program.cs)：
+
+如果对数组使用自定义类，就必须实现 IComparable 接口，这个接口只定义了一个方法 CompareTo().如果要比较的对象相等，该方法就返回 0。如果该实例应排在参数对象的前面，该方法就返回小于 0 的值。如果该实例应排在参数对象的后面，该方法就返回大于 0 的值，
+修改 Person 类，使之实现 IComparable< Person>接口。先使用 String 类中 CompareTo() 方法对
+LastName 的值进行比较。如果 LastName 的值相同，就比较 FirstName(代码文件 SortingSample/Program.cs)：
+
+```csharp
 public class Person: IComparable< Person>
 {
-public int CompareTo(Person other)
-{
-if (other -= nullj return 1;
-int result = string,Compare(this.LastName, other.LastName);
-if (result == 0)
-{
-result = string.Compare(this-FirstName, other-FirstName};
-}
+    public int CompareTo(Person other)
+    {
+    if (other -= nullj return 1;
+        int result = string,Compare(this.LastName, other.LastName);
+    if (result == 0)
+    {
+        result = string.Compare(this-FirstName, other-FirstName};
+    }
 return result;
+}
+```
+
 现在可以按照姓氏对 Person 对象对应的数组排序(代码文件 SortingSample/Programcs):
 Person[) persons (
-new Person { FirstName 番"Damon", LastName=HHi11N ,
-new Person { FirstName 番"Niki”, LastName*"Lauda” },
-new Person ( FirstName 番"Ayrton，*r LastName 番"Senna" },
+new Person { FirstName ="Damon", LastName=HHi11N ,
+new Person { FirstName ="Niki”, LastName*"Lauda” },
+new Person ( FirstName="Ayrton，*r LastName ="Senna" },
 new Person { FirstName=,,Graham", LastName=r,Hi 11 ■' }
 );
 Array.Sort(persons);
