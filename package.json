@@ -1,0 +1,15 @@
+{
+    "name": "blog",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "dev": "vuepress dev docs",
+        "build": "vuepress build docs"
+    },
+    "repository": "git@github.com:Silenct-Gu/Blog.git",
+    "author": "Silent-Gu <a18602467506@163.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "vuepress": "^1.8.2"
+    }
+}
